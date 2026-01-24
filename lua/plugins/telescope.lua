@@ -13,6 +13,8 @@ return {
       vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Telescope live grep" })
       vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "Telescope buffers" })
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Telescope help tags" })
+      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Telescope help tags" })
+      vim.keymap.set("n", "<leader>so", builtin.oldfiles, { desc = "Telescope help tags" })
     end,
   },
 }

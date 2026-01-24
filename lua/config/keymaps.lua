@@ -8,7 +8,6 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 
 vim.keymap.set("n", "<leader>rr", "<CMD>restart<CR>", { desc = "Restart NeoVim" })
 
-vim.keymap.set("n", "<leader>to", "<CMD>Oil<CR>", { desc = "Open Oil" })
-
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Quickfix" })
+
 vim.keymap.set("n", "-", ":Ex<cr>", { desc = "Explore" })

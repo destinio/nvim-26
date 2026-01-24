@@ -3,7 +3,6 @@ return {
     'saghen/blink.cmp',
     dependencies = { 'rafamadriz/friendly-snippets' },
     version = '1.*',
-
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -29,6 +28,13 @@ return {
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          path = {
+            enabled = function()
+              return vim.bo.filetype ~= 'copilot-chat'
+            end
+          }
+        }
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -41,3 +47,4 @@ return {
     opts_extend = { "sources.default" }
   }
 }
+
