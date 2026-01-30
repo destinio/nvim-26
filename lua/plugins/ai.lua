@@ -1,11 +1,13 @@
 return {
   {
     'github/copilot.vim',
+    -- https://docs.github.com/en/copilot/how-tos/configure-personal-settings/configure-in-ide?tool=vimneovim
     config = function()
       -- vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', { expr = true, silent = true, replace_keycodes = false })
 
-      vim.keymap.set('i', '<C-;>', '<Plug>(copilot-suggest)')
-      vim.keymap.set('i', '<C-Right>', '<Plug>(copilot-accept-word)')
+      vim.keymap.set('i', '<C-I>', '<Plug>(copilot-suggest)', { silent = true })
+      -- vim.keymap.set('i', '<C-Right>', '<Plug>(copilot-accept-word)')
+      --
 
       vim.g.copilot_no_tab_map = true
       vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
@@ -31,13 +33,13 @@ return {
     },
     build = "make tiktoken",
     cmd = { "CopilotChat" },
-    keys = {
-      {
-        "<leader>aa",
-        "<cmd>CopilotChatToggle<cr>",
-        desc = "Open Copilot Chat",
-      },
-    },
+    -- keys = {
+    --   {
+    --     "<leader>aa",
+    --     "<cmd>CopilotChatToggle<cr>",
+    --     desc = "Open Copilot Chat",
+    --   },
+    -- },
     config = function()
       require("CopilotChat").setup({
         model = "claude-sonnet-4",
@@ -45,16 +47,6 @@ return {
         separator = '---',
         error_header = '> [!ERROR] Error',
       })
-
-      -- Quick chat keymap
-      vim.keymap.set('n', '<leader>ccq', function()
-        local input = vim.fn.input("Quick Chat: ")
-        if input ~= "" then
-          require("CopilotChat").ask(input, {
-            selection = require("CopilotChat.select").buffer
-          })
-        end
-      end, { desc = "CopilotChat - Quick chat" })
     end,
   },
   {
@@ -70,5 +62,5 @@ return {
     config = function()
       require('diffview').setup()
     end,
-  }
+  },
 }

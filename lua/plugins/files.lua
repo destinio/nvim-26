@@ -25,5 +25,17 @@ return {
       vim.keymap.set("n", "<leader>e", function() harpoon:list():add() end)
       vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
     end
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    lazy = false, -- neo-tree will lazily load itself
+    config = function()
+      vim.keymap.set("n", "<leader>n", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+    end,
   }
 }
