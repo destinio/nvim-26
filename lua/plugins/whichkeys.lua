@@ -21,7 +21,10 @@ return {
 
       -- Register key group mappings for better organization
       wk.add({
-        { "<leader>s", group = "search" }, -- Define search-related commands group
+        { "<leader>s", group = "search" },
+        { "<leader>a", group = "AI" },
+        { "<leader>w", group = "Work" },
+        { "<leader>t", group = "Toggle" },
       })
     end,
   },

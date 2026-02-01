@@ -1,0 +1,35 @@
+---@module 'lazy'
+
+return {
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      -- bigfile = { enabled = true },
+      -- dashboard = { enabled = true },
+      -- explorer = { enabled = true },
+      -- indent = { enabled = true },
+      -- input = { enabled = true },
+      -- picker = { enabled = true },
+      -- notifier = { enabled = true },
+      -- quickfile = { enabled = true },
+      -- scope = { enabled = true },
+      -- scroll = { enabled = true },
+      -- statuscolumn = { enabled = true },
+      -- words = { enabled = true },
+      scratch = { enabled = true },
+    },
+    keys = {
+      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Open" },
+      {
+        "<leader>tn",
+        function()
+          Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = "~/notes/TODO.md" })
+        end,
+        desc = "Todo List"
+      },
+    },
+  }
+}

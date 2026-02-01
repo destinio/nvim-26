@@ -1,4 +1,82 @@
 return {
+  -- https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli
+  -- https://github.com/folke/sidekick.nvim
+  {
+    "folke/sidekick.nvim",
+    opts = {
+      cli = {
+        mux = {
+          enabled = true,
+          backend = "tmux"
+        }
+      }
+    },
+    keys = {
+      {
+        "<tab>",
+        function()
+          -- if there is a next edit, jump to it, otherwise apply it if any
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>" -- fallback to normal tab
+          end
+        end,
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<c-.>",
+        function() require("sidekick.cli").toggle() end,
+        desc = "Sidekick Toggle",
+        mode = { "n", "t", "i", "x" },
+      },
+      {
+        "<leader>aa",
+        function() require("sidekick.cli").toggle() end,
+        desc = "Sidekick Toggle CLI",
+      },
+      {
+        "<leader>as",
+        function() require("sidekick.cli").select() end,
+        -- Or to select only installed tools:
+        -- require("sidekick.cli").select({ filter = { installed = true } })
+        desc = "Select CLI",
+      },
+      {
+        "<leader>ad",
+        function() require("sidekick.cli").close() end,
+        desc = "Detach a CLI Session",
+      },
+      {
+        "<leader>at",
+        function() require("sidekick.cli").send({ msg = "{this}" }) end,
+        mode = { "x", "n" },
+        desc = "Send This",
+      },
+      {
+        "<leader>af",
+        function() require("sidekick.cli").send({ msg = "{file}" }) end,
+        desc = "Send File",
+      },
+      {
+        "<leader>av",
+        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+        mode = { "x" },
+        desc = "Send Visual Selection",
+      },
+      {
+        "<leader>ap",
+        function() require("sidekick.cli").prompt() end,
+        mode = { "n", "x" },
+        desc = "Sidekick Select Prompt",
+      },
+      -- Example of a keybinding to open Claude directly
+      {
+        "<leader>ac",
+        function() require("sidekick.cli").toggle({ name = "copilot", focus = true }) end,
+        desc = "Sidekick Toggle Copilot Chat",
+      },
+    },
+  },
   {
     'github/copilot.vim',
     -- https://docs.github.com/en/copilot/how-tos/configure-personal-settings/configure-in-ide?tool=vimneovim
@@ -23,44 +101,6 @@ return {
         title = "Copilot Chat",
         size = { width = 50 },
       })
-    end,
-  },
-  {
-    -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/wiki/Examples-and-Tips
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "nvim-lua/plenary.nvim", branch = "master" },
-    },
-    build = "make tiktoken",
-    cmd = { "CopilotChat" },
-    -- keys = {
-    --   {
-    --     "<leader>aa",
-    --     "<cmd>CopilotChatToggle<cr>",
-    --     desc = "Open Copilot Chat",
-    --   },
-    -- },
-    config = function()
-      require("CopilotChat").setup({
-        model = "claude-sonnet-4",
-        highlight_headers = false,
-        separator = '---',
-        error_header = '> [!ERROR] Error',
-      })
-    end,
-  },
-  {
-    -- https://github.com/MeanderingProgrammer/render-markdown.nvim
-    'MeanderingProgrammer/render-markdown.nvim',
-    opts = {
-      file_types = { 'markdown', 'copilot-chat' },
-    },
-    ft = { 'markdown', 'copilot-chat' },
-  },
-  {
-    'sindrets/diffview.nvim',
-    config = function()
-      require('diffview').setup()
     end,
   },
 }
