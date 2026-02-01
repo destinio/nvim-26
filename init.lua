@@ -1,4 +1,3 @@
--- Set leader keys for key mappings
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
