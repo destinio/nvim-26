@@ -4,8 +4,8 @@ return {
     ft = "lua", -- only load on lua files
     opts = {
       library = {
-        "~/.local/share/nvim/lazy/",
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+        "~/.local/share/nvim/lazy/",
       },
     },
   },
@@ -45,5 +45,5 @@ return {
     event = "VeryLazy",
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
-  { "akinsho/bufferline.nvim", opts = { options = { separator_style = "slope" } } },
+  { "akinsho/bufferline.nvim", opts = { options = { separator_style = "" } } },
 }

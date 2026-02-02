@@ -22,9 +22,13 @@ return {
       local harpoon = require("harpoon")
       harpoon:setup()
 
-      vim.keymap.set("n", "<leader>e", function() harpoon:list():add() end)
-      vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
-    end
+      vim.keymap.set("n", "<leader>ha", function()
+        harpoon:list():add()
+      end)
+      vim.keymap.set("n", "<leader>ho", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+    end,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -37,5 +41,5 @@ return {
     config = function()
       vim.keymap.set("n", "<leader>n", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
     end,
-  }
+  },
 }

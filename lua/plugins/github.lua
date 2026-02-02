@@ -34,7 +34,7 @@ return {
       {
         "<leader>os",
         function()
-          require("octo.utils").create_base_search_command { include_current_repo = true }
+          require("octo.utils").create_base_search_command({ include_current_repo = true })
         end,
         desc = "Search GitHub",
       },
@@ -46,5 +46,5 @@ return {
       -- OR "folke/snacks.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-  }
+  },
 }
