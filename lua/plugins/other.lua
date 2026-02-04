@@ -30,7 +30,7 @@ return {
     opts = {},
     keys = {
       { "ga", mode = { "n", "v" } },
-      { "gA", mode = { "n", "v" } },
+      { "gA", mde = { "n", "v" } },
     },
   },
   {
@@ -38,12 +38,31 @@ return {
     cmd = "IncRename",
     config = true,
   },
-  { "nvim-mini/mini.test", cond = vim.fn.isdirectory("tests") == 1 },
   {
     "folke/ts-comments.nvim",
     opts = {},
     event = "VeryLazy",
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
-  { "akinsho/bufferline.nvim", opts = { options = { separator_style = "" } } },
+  {
+    "mgierada/lazydocker.nvim",
+    dependencies = { "akinsho/toggleterm.nvim" },
+    config = function()
+      require("lazydocker").setup({
+        border = "curved", -- valid options are "single" | "double" | "shadow" | "curved"
+        width = 0.9, -- width of the floating window (0-1 for percentage, >1 for absolute columns)
+        height = 0.9, -- height of the floating window (0-1 for percentage, >1 for absolute rows)
+      })
+    end,
+    event = "BufRead",
+    keys = {
+      {
+        "<leader>ld",
+        function()
+          require("lazydocker").open()
+        end,
+        desc = "Open Lazydocker floating window",
+      },
+    },
+  },
 }

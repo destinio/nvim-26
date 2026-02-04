@@ -69,6 +69,7 @@ return {
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "help" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "keymaps" })
       vim.keymap.set("n", "<leader>so", builtin.oldfiles, { desc = "old files" })
+      vim.keymap.set("n", "<leader>ss", builtin.git_status, { desc = "old files" })
     end,
   },
 }
