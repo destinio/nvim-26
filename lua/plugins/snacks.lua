@@ -19,17 +19,24 @@ return {
       -- scroll = { enabled = true },
       -- statuscolumn = { enabled = true },
       -- words = { enabled = true },
+      zen = { enabled = true },
       scratch = { enabled = true },
     },
     keys = {
-      { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Open" },
+      {
+        "<leader><space>",
+        function()
+          Snacks.zen()
+        end,
+        desc = "Zen",
+      },
       {
         "<leader>tn",
         function()
           Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = "~/notes/TODO.md" })
         end,
-        desc = "Todo List"
+        desc = "Todo List",
       },
     },
-  }
+  },
 }
