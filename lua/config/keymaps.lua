@@ -1,3 +1,4 @@
+-- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
@@ -13,16 +14,16 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Quick
 vim.keymap.set("n", "-", ":Ex<cr>", { desc = "Explore" })
 
 -- Quick chat keymap
-vim.keymap.set('n', '<leader>aq', function()
+vim.keymap.set("n", "<leader>aq", function()
   local input = vim.fn.input("Quick Chat: ")
   if input ~= "" then
     require("CopilotChat").ask(input, {
-      selection = require("CopilotChat.select").buffer
+      selection = require("CopilotChat.select").buffer,
     })
   end
 end, { desc = "CopilotChat - Quick chat" })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>aa', function()
+vim.keymap.set({ "n", "v" }, "<leader>aa", function()
   local Input = require("nui.input")
   local event = require("nui.utils.autocmd").event
 
@@ -54,7 +55,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>aa', function()
     on_submit = function(value)
       if value ~= "" then
         require("CopilotChat").ask(value, {
-          selection = require("CopilotChat.select").buffer
+          selection = require("CopilotChat.select").buffer,
         })
       end
     end,
@@ -64,7 +65,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>aa', function()
     input:unmount()
   end, { noremap = true })
 
-
   -- unmount component when cursor leaves buffer
   input:on(event.BufLeave, function()
     input:unmount()
@@ -73,3 +73,5 @@ vim.keymap.set({ 'n', 'v' }, '<leader>aa', function()
   -- mount/open the component
   input:mount()
 end, { desc = "UI Prompt" })
+
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })

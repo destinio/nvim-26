@@ -1,3 +1,10 @@
+-- Overide LSP-related settings and keymaps when an LSP client attaches to a buffer
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   callback = function(args)
+--     vim.keymap.del("n", "K", { buffer = args.buf })
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "diff",
   callback = function()
@@ -61,7 +68,6 @@ end, {})
 
 vim.keymap.set("n", "<leader>wb", ":GitBranch<CR>", { noremap = true, silent = true, desc = "Get Git Branch" })
 
-
 -- Always open help in a vertical split on the right
 vim.api.nvim_create_autocmd("BufWinEnter", {
   group = vim.api.nvim_create_augroup("help_vertical_split", {}),
@@ -78,7 +84,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 --   vim.diagnostic.config({ virtual_lines = new_config })
 -- end, { desc = 'Toggle diagnostic virtual_lines' })
 --
-vim.keymap.set('n', 'gK', function()
+vim.keymap.set("n", "gK", function()
   local new_config = not vim.diagnostic.config().virtual_text
   vim.diagnostic.config({ virtual_text = new_config })
-end, { desc = 'Toggle diagnostic virtual_text' })
+end, { desc = "Toggle diagnostic virtual_text" })

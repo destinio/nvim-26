@@ -41,10 +41,10 @@ return {
           path_display = { shorten = { len = 3 } },
           mappings = {
             i = {
-              ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
+              -- ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
             },
             n = {
-              ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
+              -- ["<C-p>"] = require("telescope.actions.layout").toggle_preview,
             },
           },
         },
