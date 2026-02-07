@@ -1,11 +1,13 @@
 return {
   {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install",
+  },
+  {
     "nvim-telescope/telescope.nvim",
     -- tag = "*",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      -- optional but recommended
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     config = function()
       local telescope = require("telescope")
@@ -63,13 +65,17 @@ return {
         },
       })
 
+      require("telescope").load_extension("fzf")
+
+      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "buffers" })
       vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "files" })
       vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "live grep" })
-      vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "buffers" })
       vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "help" })
       vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "keymaps" })
       vim.keymap.set("n", "<leader>so", builtin.oldfiles, { desc = "old files" })
       vim.keymap.set("n", "<leader>ss", builtin.git_status, { desc = "old files" })
+
+      vim.keymap.set("n", "grr", builtin.lsp_references, { desc = "LSP Refrences" })
     end,
   },
 }
