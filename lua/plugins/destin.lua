@@ -1,3 +1,6 @@
 return {
-  dir = "~/plugins/destin.nvim",
+  {
+    "destinio/destin.nvim",
+    opts = {},
+  },
 }

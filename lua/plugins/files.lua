@@ -63,6 +63,7 @@ return {
     lazy = false, -- neo-tree will lazily load itself
     config = function()
       vim.keymap.set("n", "<leader>n", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+      vim.keymap.set("n", "<leader>N", "<CMD>Neotree git_status<CR>", { desc = "Toggle Neo-tree" })
     end,
   },
 }

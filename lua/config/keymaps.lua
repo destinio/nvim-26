@@ -43,13 +43,3 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 vim.keymap.set("n", "<leader>rr", "<CMD>restart<CR>", { desc = "Restart NeoVim" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Quickfix" })
 vim.keymap.set("n", "-", ":Ex<cr>", { desc = "Explore" })
-
--- Quick chat keymap
-vim.keymap.set("n", "<leader>aq", function()
-  local input = vim.fn.input("Quick Chat: ")
-  if input ~= "" then
-    require("CopilotChat").ask(input, {
-      selection = require("CopilotChat.select").buffer,
-    })
-  end
-end, { desc = "CopilotChat - Quick chat" })

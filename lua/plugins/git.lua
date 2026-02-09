@@ -1,5 +1,12 @@
 -- https://github.com/pwntester/octo.nvim
 return {
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+    end,
+  },
   { "sindrets/diffview.nvim", opts = {}, cmd = { "DiffviewOpen" } },
   {
     "pwntester/octo.nvim",
