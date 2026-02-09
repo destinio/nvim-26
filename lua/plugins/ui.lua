@@ -14,6 +14,20 @@ return {
     end,
   },
   { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} },
+  -- Lua
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        backdrop = 0.95,
+      },
+    },
+    config = function()
+      vim.keymap.set("n", "<leader><space>", function()
+        require("zen-mode").toggle()
+      end, { desc = "Toggle Zen Mode" })
+    end,
+  },
   {
     "folke/persistence.nvim",
     -- https://github.com/folke/persistence.nvim
