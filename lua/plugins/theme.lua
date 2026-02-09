@@ -18,7 +18,29 @@ return {
         transparent = true,
       })
       require("onedark").load()
-      vim.cmd.colorscheme("onedark")
+    end,
+  },
+  {
+    "folke/tokyonight.nvim",
+    -- https://github.com/folke/tokyonight.nvim
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("tokyonight").setup({
+        transparent = true,
+      })
+
+      vim.cmd.colorscheme("tokyonight-night")
+    end,
+  },
+  {
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("cyberdream").setup({
+        transparent = true,
+      })
     end,
   },
 }
