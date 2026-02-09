@@ -28,6 +28,7 @@ return {
         { "<leader>h", group = "Harpoon" },
         { "<leader>j", group = "Join Line" },
         { "<leader>c", group = "Code Actions" },
+        { "<leader>q", group = "Sessions" },
       })
     end,
   },
