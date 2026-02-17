@@ -1,21 +1,28 @@
+-- AI-powered coding assistance plugins:
+-- 1. Sidekick.nvim - Bridge between Neovim and external AI CLI tools (Cursor, Copilot Chat, Claude, etc.)
+-- 2. Copilot.vim - GitHub Copilot inline completions
 return {
   -- https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli
   -- https://github.com/folke/sidekick.nvim
+  -- https://cursor.com/docs/cli/overview
   {
     "folke/sidekick.nvim",
+    ---@class sidekick.Config
     opts = {
       cli = {
         mux = {
           enabled = true,
-          backend = "tmux"
-        }
-      }
+          backend = "tmux",
+        },
+      },
     },
+    -- nes = {
+    --   -- enabled = false,
+    -- },
     keys = {
       {
         "<tab>",
         function()
-          -- if there is a next edit, jump to it, otherwise apply it if any
           if not require("sidekick").nes_jump_or_apply() then
             return "<Tab>" -- fallback to normal tab
           end
@@ -24,83 +31,78 @@ return {
         desc = "Goto/Apply Next Edit Suggestion",
       },
       {
-        "<c-.>",
-        function() require("sidekick.cli").toggle() end,
-        desc = "Sidekick Toggle",
-        mode = { "n", "t", "i", "x" },
-      },
-      {
         "<leader>aa",
-        function() require("sidekick.cli").toggle() end,
+        function()
+          require("sidekick.cli").toggle({ name = "cursor", focus = true })
+        end,
         desc = "Sidekick Toggle CLI",
       },
       {
-        "<leader>as",
-        function() require("sidekick.cli").select() end,
-        -- Or to select only installed tools:
-        -- require("sidekick.cli").select({ filter = { installed = true } })
-        desc = "Select CLI",
-      },
-      {
         "<leader>ad",
-        function() require("sidekick.cli").close() end,
+        function()
+          require("sidekick.cli").close()
+        end,
         desc = "Detach a CLI Session",
       },
+      -- Send the current symbol/object under cursor to the CLI
       {
         "<leader>at",
-        function() require("sidekick.cli").send({ msg = "{this}" }) end,
+        function()
+          require("sidekick.cli").send({ msg = "{this}" })
+        end,
         mode = { "x", "n" },
         desc = "Send This",
       },
+      -- Send the entire current file to the CLI
       {
         "<leader>af",
-        function() require("sidekick.cli").send({ msg = "{file}" }) end,
+        function()
+          require("sidekick.cli").send({ msg = "{file}" })
+        end,
         desc = "Send File",
       },
+      -- Send the current visual selection to the CLI
       {
         "<leader>av",
-        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+        function()
+          require("sidekick.cli").send({ msg = "{selection}" })
+        end,
         mode = { "x" },
         desc = "Send Visual Selection",
       },
+      -- Open a prompt picker to choose a predefined prompt template
       {
         "<leader>ap",
-        function() require("sidekick.cli").prompt() end,
+        function()
+          require("sidekick.cli").prompt()
+        end,
         mode = { "n", "x" },
         desc = "Sidekick Select Prompt",
       },
-      -- Example of a keybinding to open Claude directly
+      -- Toggle Copilot Chat CLI in a focused split
       {
         "<leader>ac",
-        function() require("sidekick.cli").toggle({ name = "copilot", focus = true }) end,
+        function()
+          require("sidekick.cli").toggle({ name = "copilot", focus = true })
+        end,
         desc = "Sidekick Toggle Copilot Chat",
       },
     },
   },
+
+  -- GitHub Copilot - AI inline code completions
   {
-    'github/copilot.vim',
+    "github/copilot.vim",
     -- https://docs.github.com/en/copilot/how-tos/configure-personal-settings/configure-in-ide?tool=vimneovim
     config = function()
       -- vim.keymap.set('i', '<C-L>', 'copilot#Accept("\\<CR>")', { expr = true, silent = true, replace_keycodes = false })
-
-      vim.keymap.set('i', '<C-I>', '<Plug>(copilot-suggest)', { silent = true })
       -- vim.keymap.set('i', '<C-Right>', '<Plug>(copilot-accept-word)')
       --
 
+      -- Disable the default Tab accept mapping so it doesn't conflict with other plugins
       vim.g.copilot_no_tab_map = true
-      vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
-    end,
-  },
-  {
-    "folke/edgy.nvim",
-    optional = true,
-    opts = function(_, opts)
-      opts.right = opts.right or {}
-      table.insert(opts.right, {
-        ft = "copilot-chat",
-        title = "Copilot Chat",
-        size = { width = 50 },
-      })
+      -- Use Shift-Tab to accept the current Copilot suggestion
+      vim.keymap.set("i", "<S-Tab>", 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
     end,
   },
 }
