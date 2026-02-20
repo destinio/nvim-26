@@ -50,8 +50,8 @@ return {
     config = function()
       require("lazydocker").setup({
         border = "curved", -- valid options are "single" | "double" | "shadow" | "curved"
-        width = 0.9, -- width of the floating window (0-1 for percentage, >1 for absolute columns)
-        height = 0.9, -- height of the floating window (0-1 for percentage, >1 for absolute rows)
+        width = 0.9,       -- width of the floating window (0-1 for percentage, >1 for absolute columns)
+        height = 0.9,      -- height of the floating window (0-1 for percentage, >1 for absolute rows)
       })
     end,
     event = "BufRead",
@@ -63,6 +63,21 @@ return {
         end,
         desc = "Open Lazydocker floating window",
       },
+    },
+  },
+  {
+    "NMAC427/guess-indent.nvim",
+    config = function()
+      require("guess-indent").setup({})
+    end,
+  },
+  {
+    "nvzone/showkeys",
+    cmd = "ShowkeysToggle",
+    opts = {
+      timeout = 1,
+      maxkeys = 5,
+      -- more opts
     },
   },
 }

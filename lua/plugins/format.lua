@@ -11,16 +11,23 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "black" },
-          ["javascript"] = { "prettier" },
-          ["javascriptreact"] = { "prettier" },
-          ["typescript"] = { "prettier" },
-          ["typescriptreact"] = { "prettier" },
+          javascript = { "prettier" },
+          typescript = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          json = { "prettier" },
+          jsonc = { "prettier" },
+          yaml = { "prettier" },
+          markdown = { "prettier" },
           html = { "prettier" },
           css = { "prettier" },
-          json = { "prettier" },
-          markdown = { "prettier" },
+          scss = { "prettier" },
+
+          sh = { "shfmt" },
+          bash = { "shfmt" },
         },
       })
     end,
   },
 }
+

@@ -1,13 +1,13 @@
 return {
   {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install",
-  },
-  {
     "nvim-telescope/telescope.nvim",
-    -- tag = "*",
     dependencies = {
       "nvim-lua/plenary.nvim",
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install',
+        build = 'make',
+      }
     },
     config = function()
       local telescope = require("telescope")
@@ -24,19 +24,19 @@ return {
           },
           layout_config = {
             vertical = {
-              width = 0.6, -- wider center layout
+              width = 0.6,             -- wider center layout
               height = 0.6,
-              preview_cutoff = 0, -- always show preview
+              preview_cutoff = 0,      -- always show preview
               prompt_position = "top", -- prompt -> results -> preview
-              preview_height = 0.5, -- size when shown
-              mirror = true, -- if you want it on the right
+              preview_height = 0.5,    -- size when shown
+              mirror = true,           -- if you want it on the right
             },
             horizontal = {
               width = 0.6,
               height = 0.6,
-              preview_cutoff = 120, -- show preview if columns > 120
+              preview_cutoff = 120,    -- show preview if columns > 120
               prompt_position = "top", -- prompt -> results -> preview
-              preview_width = 0.4, -- size when shown
+              preview_width = 0.4,     -- size when shown
             },
           },
           sorting_strategy = "ascending",
@@ -56,10 +56,10 @@ return {
             themes.get_dropdown(),
           },
           fzf = {
-            fuzzy = true, -- false will only do exact matching
+            fuzzy = true,                   -- false will only do exact matching
             override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true, -- override the file sorter
-            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
             -- the default case_mode is "smart_case"
           },
         },

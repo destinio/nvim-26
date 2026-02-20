@@ -7,5 +7,5 @@ return {
       require("aerial").setup({})
       vim.keymap.set("n", "<leader>ta", "<cmd>AerialToggle!<CR>")
     end,
-  },
+  }
 }
