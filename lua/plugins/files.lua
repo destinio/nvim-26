@@ -37,15 +37,15 @@ return {
         end
 
         require("telescope.pickers")
-          .new({}, {
-            prompt_title = "Harpoon",
-            finder = require("telescope.finders").new_table({
-              results = file_paths,
-            }),
-            previewer = conf.file_previewer({}),
-            sorter = conf.generic_sorter({}),
-          })
-          :find()
+            .new({}, {
+              prompt_title = "Harpoon",
+              finder = require("telescope.finders").new_table({
+                results = file_paths,
+              }),
+              previewer = conf.file_previewer({}),
+              sorter = conf.generic_sorter({}),
+            })
+            :find()
       end
 
       vim.keymap.set("n", "<leader>ho", function()
@@ -62,8 +62,9 @@ return {
     },
     lazy = false, -- neo-tree will lazily load itself
     config = function()
-      vim.keymap.set("n", "<leader>n", "<CMD>Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
-      vim.keymap.set("n", "<leader>N", "<CMD>Neotree git_status<CR>", { desc = "Toggle Neo-tree" })
+      vim.keymap.set("n", "<leader>nn", "<CMD>Neotree toggle reveal=true<CR>", { desc = "Explore" })
+      vim.keymap.set("n", "<leader>ng", "<CMD>Neotree git_status<CR>", { desc = "Explore Git" })
+      vim.keymap.set("n", "<leader>ns", "<CMD>Neotree document_symbols<CR>", { desc = "Explore document_symbols" })
     end,
   },
 }
