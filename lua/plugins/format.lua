@@ -10,7 +10,6 @@ return {
         },
         formatters_by_ft = {
           lua = { "stylua" },
-          python = { "black" },
           javascript = { "prettier" },
           typescript = { "prettier" },
           javascriptreact = { "prettier" },
@@ -30,4 +29,3 @@ return {
     end,
   },
 }
-

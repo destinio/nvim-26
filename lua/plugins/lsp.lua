@@ -128,6 +128,10 @@ return {
       local servers = {
         rust_analyzer = {},
         ts_ls = {},
+        prettier = {},
+        tailwindcss = {},
+        shfmt = {},
+        stylua = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -152,13 +156,16 @@ return {
       end
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format Lua code
+        "stylua",
+        "prettier",
+        "shfmt",
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
       require("mason-lspconfig").setup({
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
+        automatic_enable = true,
       })
     end,
   },
