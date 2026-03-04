@@ -29,6 +29,7 @@ return {
         { "<leader>j", group = "Join Line" },
         { "<leader>c", group = "Code Actions" },
         { "<leader>q", group = "Sessions" },
+        { "<leader>g", group = "Git" },
       })
     end,
   },
