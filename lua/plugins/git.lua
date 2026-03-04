@@ -74,4 +74,12 @@ return {
       { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
     },
   },
+  {
+    "FabijanZulj/blame.nvim",
+    lazy = false,
+    config = function()
+      require("blame").setup({})
+    end,
+  },
 }
+
