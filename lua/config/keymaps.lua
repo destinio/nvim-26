@@ -1,4 +1,3 @@
--- Better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>")
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>")
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>")
@@ -11,14 +10,7 @@ end, { desc = "LSP Reference (default)" })
 vim.keymap.set("n", "grx", function()
   local function on_list(options)
     options.title = "LSP References"
-    -- Filter out test/spec files
     local filtered_items = {}
-    -- for _, item in ipairs(options.items) do
-    --   local filename = item.filename or ""
-    --   if not (filename:match("test") or filename:match("spec")) then
-    --     table.insert(filtered_items, item)
-    --   end
-    -- end
     for _, item in ipairs(options.items) do
       local filename = item.filename or ""
       if not (filename:match("%.test%.") or filename:match("%.spec%.")) then
@@ -41,7 +33,4 @@ end, { desc = "LSP Reference" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<leader>rr", "<CMD>restart<CR>", { desc = "Restart NeoVim" })
--- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open Quickfix" })
-vim.keymap.set("n", "-", ":Ex<cr>", { desc = "Explore" })
--- Disable help
 vim.keymap.set({ "n", "i" }, "<F1>", "<Nop>", { desc = "Disable help" })

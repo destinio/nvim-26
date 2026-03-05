@@ -1,10 +1,3 @@
--- Overide LSP-related settings and keymaps when an LSP client attaches to a buffer
--- vim.api.nvim_create_autocmd("LspAttach", {
---   callback = function(args)
---     vim.keymap.del("n", "K", { buffer = args.buf })
---   end,
--- })
-
 vim.api.nvim_create_autocmd("OptionSet", {
   pattern = "diff",
   callback = function()
@@ -46,8 +39,16 @@ vim.api.nvim_create_autocmd("FileChangedShellPost", {
 -- command to get current branch name and print it in the command line
 vim.api.nvim_create_user_command("GitBranch", function()
   local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null")
+  if not handle then
+    print("Failed to run git command")
+    return
+  end
   local result = handle:read("*a")
   handle:close()
+  if not result then
+    print("Failed to read git output")
+    return
+  end
   local branch = result:gsub("\n", "")
   if branch == "" then
     print("Not in a git repository")
@@ -78,13 +79,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
-
--- vim.keymap.set('n', '', function()
---   local new_config = not vim.diagnostic.config().virtual_lines
---   vim.diagnostic.config({ virtual_lines = new_config })
--- end, { desc = 'Toggle diagnostic virtual_lines' })
---
 vim.keymap.set("n", "gK", function()
-  local new_config = not vim.diagnostic.config().virtual_text
-  vim.diagnostic.config({ virtual_text = new_config })
+  local current = vim.diagnostic.config() or {}
+  vim.diagnostic.config({ virtual_text = not current.virtual_text })
 end, { desc = "Toggle diagnostic virtual_text" })

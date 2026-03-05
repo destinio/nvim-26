@@ -67,7 +67,7 @@ return {
         function()
           require("sidekick.cli").send({ msg = "{selection}" })
         end,
-        mode = { "x" },
+        mode = { "x", "v" },
         desc = "Send Visual Selection",
       },
       -- Open a prompt picker to choose a predefined prompt template
